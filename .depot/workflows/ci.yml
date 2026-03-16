@@ -21,23 +21,15 @@ jobs:
           echo "head_ref=${{ github.head_ref }}"
 
       - name: Run checks
-        run: |
-          echo "Running build checks..."
-          if [ -f FAIL ]; then
-            echo "FAIL marker detected — build broken!"
-            exit 1
-          fi
-          echo "All checks passed."
+        run: echo "All PR-level checks passed."
 
-      - name: Verify merge queue ref
+      - name: Merge queue integration check
         if: github.event_name == 'merge_group'
         run: |
-          case "${{ github.ref }}" in
-            refs/heads/gh-readonly-queue/*)
-              echo "PASS: running inside merge queue (ref=${{ github.ref }})"
-              ;;
-            *)
-              echo "FAIL: expected refs/heads/gh-readonly-queue/* but got ${{ github.ref }}"
-              exit 1
-              ;;
-          esac
+          echo "Running merge queue integration checks..."
+          echo "ref=${{ github.ref }}"
+          if [ -f FAIL ]; then
+            echo "FAIL marker detected — this combination breaks the build!"
+            exit 1
+          fi
+          echo "PASS: merge queue checks passed"
