@@ -1,0 +1,2 @@
+Depot CI merge queue test v2.
+Required checks: CI / ci.yml:build (pull_request) and CI / ci.yml:build (merge_group).
