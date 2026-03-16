@@ -23,7 +23,10 @@ jobs:
       - name: Run checks
         run: |
           echo "Running build checks..."
-          sleep 3
+          if [ -f FAIL ]; then
+            echo "FAIL marker detected — build broken!"
+            exit 1
+          fi
           echo "All checks passed."
 
       - name: Verify merge queue ref
