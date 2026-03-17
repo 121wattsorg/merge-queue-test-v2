@@ -1,0 +1,2 @@
+DEP-3848: post-deploy verification.
+Confirm check names are unsuffixed and merge queue works end-to-end.
