@@ -1,0 +1,2 @@
+DEP-3848: local validation of check name suffix removal.
+Created to trigger CI and verify sync logic via manual-sync-ci-check.ts.
